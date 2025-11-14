@@ -173,14 +173,14 @@ func (e *Environment) Create() error {
 	labels["ContainerType"] = "server_process"
 
 	conf := &container.Config{
-		Hostname:     e.Id,
+		//Hostname:     e.Id,
 		Domainname:   cfg.Docker.Domainname,
 		AttachStdin:  true,
 		AttachStdout: true,
 		AttachStderr: true,
 		OpenStdin:    true,
 		Tty:          true,
-		ExposedPorts: a.Exposed(),
+		//ExposedPorts: a.Exposed(),
 		Image:        strings.TrimPrefix(e.meta.Image, "~"),
 		Env:          e.Configuration.EnvironmentVariables(),
 		Labels:       labels,
@@ -223,7 +223,7 @@ func (e *Environment) Create() error {
 	}
 
 	hostConf := &container.HostConfig{
-		PortBindings: a.DockerBindings(),
+		//PortBindings: a.DockerBindings(),
 
 		// Configure the mounts for this container. First mount the server data directory
 		// into the container as an r/w bind.
@@ -239,7 +239,7 @@ func (e *Environment) Create() error {
 		// from the Panel.
 		Resources: e.Configuration.Limits().AsContainerResources(),
 
-		DNS: cfg.Docker.Network.Dns,
+		//DNS: cfg.Docker.Network.Dns,
 
 		// Configure logging for the container to make it easier on the Daemon to grab
 		// the server output. Ensure that we don't use too much space on the host machine
